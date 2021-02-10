@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector] public GameObject SleepingBodyRef;
     public bool isInRaneOfBody;
 
+    public Transform aimTransform;
+    public Transform projectileSpawnTransform;
+    public GameObject playerProjectilePrefab;
+
     PlayerState currentPlayerState;
 
     private void Start() {
@@ -37,5 +41,10 @@ public class PlayerController : MonoBehaviour {
             isInRaneOfBody = false;
             Debug.Log(isInRaneOfBody);
         }    
+    }
+
+    public void SpawnProjectilePrefab()
+    {
+        Instantiate(playerProjectilePrefab, projectileSpawnTransform.transform.position, projectileSpawnTransform.transform.rotation);
     }
 }

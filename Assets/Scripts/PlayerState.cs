@@ -88,6 +88,7 @@ public class AsleepState : PlayerState {
     public override void Update(PlayerController playerController)
     {
         Move(playerController);
+        ProcessAimAndFire(playerController);
         AttemptWakeUp(playerController);
         SleepStateTimer -= Time.deltaTime;
         if(SleepStateTimer <= 0) {
@@ -106,5 +107,18 @@ public class AsleepState : PlayerState {
         playerController.SpriteRenderer.color = Color.white;
         playerController.transform.position = playerController.SleepingBodyRef.transform.position;
         GameObject.Destroy(playerController.SleepingBodyRef);
+    }
+
+    public void ProcessAimAndFire(PlayerController playerController)
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 aimDirection = (mousePosition - playerController.transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        playerController.aimTransform.eulerAngles = new Vector3(0f, 0f, angle);
+        if (Input.GetMouseButtonDown(0))
+        {
+            playerController.SpawnProjectilePrefab();
+        }
+
     }
 }
