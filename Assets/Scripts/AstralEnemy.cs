@@ -15,7 +15,7 @@ public class AstralEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //player = FindObjectOfType<PlayerController>().gameObject.transform; //Uncomment
+        player = FindObjectOfType<PlayerController>().gameObject.transform; //Uncomment
         InvokeRepeating("LaunchProjectile", 2.0f, 1.0f);       
         projectileCount = 0;
         health = 3;
