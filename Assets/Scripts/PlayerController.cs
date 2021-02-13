@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
     public Transform projectileSpawnTransform;
     public GameObject playerProjectilePrefab;
 
-    PlayerState currentPlayerState;
+    public PlayerState currentPlayerState;
 
     private void Start() {
         currentPlayerState = new AwakeState();    
