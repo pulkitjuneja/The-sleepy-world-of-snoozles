@@ -28,6 +28,7 @@ public class MeleeEnemy : MonoBehaviour
         startingPosition = transform.position;
         attack = false;
         state = player.GetComponent<PlayerController>().currentPlayerState;
+        health = 3;
     }
 
     // Update is called once per frame
@@ -38,7 +39,7 @@ public class MeleeEnemy : MonoBehaviour
         direction = velocity.normalized;
         acceleration = Vector3.zero;
         transform.position = startingPosition;
-        gameObject.transform.up = direction;
+        //gameObject.transform.right = direction;
         state = player.GetComponent<PlayerController>().currentPlayerState;
         body = GameObject.Find("SleepingBody(Clone)");
         if (state.GetType().ToString() == "AsleepState")
@@ -55,10 +56,25 @@ public class MeleeEnemy : MonoBehaviour
         {
             if (Time.time > attackCD)
             {
-                // attack player
-                float cd = 1f;
+                if (state.GetType().ToString() != "AsleepState")
+                {
+                    player.GetComponent<PlayerController>().health -= 1;
+                    Debug.Log(player.GetComponent<PlayerController>().health);
+                }
+
+                else
+                {
+                    player.GetComponent<PlayerController>().health -= 2;
+                    Debug.Log(player.GetComponent<PlayerController>().health);
+                }
+                float cd = 3f;
                 attackCD = Time.time + cd;
             }
+        }
+
+        if (health == 0)
+        {
+            Destroy(this.gameObject);
         }
     }
 
@@ -96,13 +112,13 @@ public class MeleeEnemy : MonoBehaviour
         if (playerScript && state.GetType().ToString() != "AsleepState")
         {
             attack = true;
-            this.GetComponent<SpriteRenderer>().color = Color.red;
+            //this.GetComponent<SpriteRenderer>().color = Color.red;
         }
 
         else if (state.GetType().ToString() == "AsleepState" && collision.gameObject == body)
         {
             attack = true;
-            this.GetComponent<SpriteRenderer>().color = Color.red;
+            //this.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 
@@ -112,13 +128,13 @@ public class MeleeEnemy : MonoBehaviour
         if (playerScript && state.GetType().ToString() != "AsleepState")
         {
             attack = false;
-            this.GetComponent<SpriteRenderer>().color = Color.white;
+            //this.GetComponent<SpriteRenderer>().color = Color.white;
         }
 
         else if (state.GetType().ToString() == "AsleepState" && collision.gameObject == body)
         {
             attack = false;
-            this.GetComponent<SpriteRenderer>().color = Color.white;
+            //this.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 }

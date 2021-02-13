@@ -16,8 +16,11 @@ public class PlayerController : MonoBehaviour {
 
     public PlayerState currentPlayerState;
 
+    public float health;
+
     private void Start() {
-        currentPlayerState = new AwakeState();    
+        currentPlayerState = new AwakeState();
+        health = 10;
     }
 
     void Update () {
