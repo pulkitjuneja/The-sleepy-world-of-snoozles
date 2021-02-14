@@ -139,15 +139,6 @@ public class MeleeEnemy : MonoBehaviour
             attack = true;
             //this.GetComponent<SpriteRenderer>().color = Color.red;
         }
-        //NOTE uncomment after player projectile is created
-        if (collision.GetComponent<PlayerProjectile>())
-        {
-            health--;
-            if (health <= 0)
-            {
-                Destroy(gameObject);
-            }
-        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
