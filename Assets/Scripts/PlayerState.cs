@@ -32,6 +32,16 @@ public class AwakeState : PlayerState {
             playerController.Animator.SetFloat("DirectionY", SpeedY);
         }
 
+        if(SpeedX<0)
+        {
+            playerController.SpriteRenderer.flipX = true; ;
+        }
+
+        if (SpeedX > 0)
+        {
+            playerController.SpriteRenderer.flipX = false;
+        }
+
         playerController.Animator.SetFloat("Speed", speedNormalized.magnitude);
         playerController.Rigidbody2D.MovePosition(playerController.transform.position + 
             
@@ -44,7 +54,9 @@ public class AwakeState : PlayerState {
             cooldownTimer -= Time.deltaTime;
         }
         Move(playerController);
+        Attack(playerController);
         TransitionToSleep(playerController);
+        
     }
 
     public void TransitionToSleep (PlayerController playerController) {
@@ -56,6 +68,20 @@ public class AwakeState : PlayerState {
     public override void Exit (PlayerController playerController, PlayerState nextState) {
             playerController.SleepingBodyRef = GameObject.Instantiate(playerController.SleepingBody, 
                 playerController.transform.position, playerController.SleepingBody.transform.rotation);
+    }
+
+    public void Attack(PlayerController playerController)
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            playerController.Animator.SetTrigger("PlayerAttack");
+            playerController.attacking = true;
+        }
+
+        else
+        {
+            playerController.attacking = false;
+        }
     }
 
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
     public float playerSpeedAwake;
@@ -17,14 +18,24 @@ public class PlayerController : MonoBehaviour {
     public PlayerState currentPlayerState;
 
     public float health;
+    [HideInInspector] public bool attacking;
 
-    private void Start() {
+    public void Awake()
+    {
         currentPlayerState = new AwakeState();
+
+    }
+    private void Start() {
         health = 10;
     }
 
-    void Update () {
+    void Update () 
+    {
         currentPlayerState.Update(this);
+        if(health<=0)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void ChangeState (PlayerState previousState, PlayerState newState) {
@@ -36,7 +47,12 @@ public class PlayerController : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Respawn") {
             isInRaneOfBody = true;
-        }    
+        }
+
+        if (other.GetComponent<EnemyProjectile>())
+        {
+            health--;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) {

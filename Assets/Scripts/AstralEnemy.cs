@@ -42,19 +42,18 @@ public class AstralEnemy : MonoBehaviour
     {
         target = player.position;
         direction = (target - transform.position).normalized;
-        transform.right = direction;
+        transform.right = new Vector3(direction.x, direction.y, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //NOTE uncomment after player projectile is created
-        //if(collision.GetComponent<PlayerProjectile>)
-        //{
-        //    health--;
-        //    if(health<=0)
-        //    {
-        //        Destroy(gameObject);
-        //    }
-        //}
+        if(collision.GetComponent<PlayerProjectile>())
+        {
+            health--;
+            if(health<=0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

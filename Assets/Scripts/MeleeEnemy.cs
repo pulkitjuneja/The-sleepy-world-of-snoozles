@@ -16,6 +16,7 @@ public class MeleeEnemy : MonoBehaviour
     private float health;
     private bool attack;
     private PlayerState state;
+    private SpriteRenderer renderer;
 
     private void Awake()
     {
@@ -29,12 +30,14 @@ public class MeleeEnemy : MonoBehaviour
         attack = false;
         state = player.GetComponent<PlayerController>().currentPlayerState;
         health = 3;
+        renderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         velocity += acceleration * Time.deltaTime;
+
         startingPosition += velocity * Time.deltaTime;
         direction = velocity.normalized;
         acceleration = Vector3.zero;
@@ -70,6 +73,17 @@ public class MeleeEnemy : MonoBehaviour
                 float cd = 3f;
                 attackCD = Time.time + cd;
             }
+        }
+
+
+        if (velocity.x < 0)
+        {
+            renderer.flipX = true;
+        }
+
+        if (velocity.x > 0)
+        {
+            renderer.flipX = false;
         }
 
         if (health == 0)
@@ -112,12 +126,42 @@ public class MeleeEnemy : MonoBehaviour
         if (playerScript && state.GetType().ToString() != "AsleepState")
         {
             attack = true;
+
+            if(playerScript.attacking)
+            {
+                health--;
+            }
             //this.GetComponent<SpriteRenderer>().color = Color.red;
         }
 
         else if (state.GetType().ToString() == "AsleepState" && collision.gameObject == body)
         {
             attack = true;
+            //this.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+        //NOTE uncomment after player projectile is created
+        if (collision.GetComponent<PlayerProjectile>())
+        {
+            health--;
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        PlayerController playerScript = collision.gameObject.GetComponent<PlayerController>();
+        if (playerScript && state.GetType().ToString() != "AsleepState")
+        {
+            if (playerScript.attacking)
+            {
+                health--;
+                if (health <= 0)
+                {
+                    Destroy(gameObject);
+                }
+            }
             //this.GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
