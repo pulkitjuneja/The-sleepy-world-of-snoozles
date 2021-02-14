@@ -32,16 +32,16 @@ public class EnemyProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //NOTE uncomment after player projectile is created
-        //if(collision.GetComponent<PlayerController> || collision.GetComponent<PlayerProjectile>)
-        //{
-        //    
-        //    
-        //  //Destroy the bullet
-            //owner.BulletDestroyed();
-            //Destroy(gameObject);
-        //    
-        //    
-        //}
+        if(collision.GetComponent<PlayerController>() || collision.GetComponent<PlayerProjectile>())
+        {
+            
+            
+          //Destroy the bullet
+          owner.BulletDestroyed();
+          Destroy(gameObject);
+            
+            
+        }
     }
 
     bool CheckBounds()

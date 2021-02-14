@@ -21,6 +21,7 @@ public class MeleeEnemy : MonoBehaviour
     private void Awake()
     {
         //body = player.GetComponent<PlayerController>().SleepingBody;
+        player = FindObjectOfType<PlayerController>().gameObject;
     }
 
     // Start is called before the first frame update
