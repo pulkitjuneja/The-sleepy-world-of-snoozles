@@ -86,8 +86,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3003653768755709864}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.74, y: -0.114, z: -0.5}
-  m_LocalScale: {x: 0.885, y: 0.46848398, z: 1}
+  m_LocalPosition: {x: 16.81, y: -0.114, z: -0.5}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 3003653768060107888}
   m_Father: {fileID: 3003653767511363863}
@@ -319,5 +319,6 @@ MonoBehaviour:
   isInRaneOfBody: 0
   aimTransform: {fileID: 3003653767511363863}
   projectileSpawnTransform: {fileID: 3003653768060107888}
-  playerProjectilePrefab: {fileID: 0}
+  playerProjectilePrefab: {fileID: 5501921916835698835, guid: fb10d64b8300d6b4b8be904c10a57787, type: 3}
   health: 0
+  attacking: 0

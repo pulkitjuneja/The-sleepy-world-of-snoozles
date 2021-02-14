@@ -1171,29 +1171,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2419705954659511201, guid: 4b7f75e4c08eb084085dd19aca9db2c7, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 9180314858352059498, guid: 045cad71387f3c349979d95fefeaed76, type: 3}
-    - target: {fileID: 3003653768844892439, guid: 4b7f75e4c08eb084085dd19aca9db2c7, type: 3}
-      propertyPath: playerProjectilePrefab
-      value: 
-      objectReference: {fileID: 5501921916835698835, guid: fb10d64b8300d6b4b8be904c10a57787, type: 3}
     - target: {fileID: 4045080135649128091, guid: 4b7f75e4c08eb084085dd19aca9db2c7, type: 3}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4045080135649128091, guid: 4b7f75e4c08eb084085dd19aca9db2c7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.11621155
-      objectReference: {fileID: 0}
-    - target: {fileID: 4045080135649128091, guid: 4b7f75e4c08eb084085dd19aca9db2c7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.11621155
-      objectReference: {fileID: 0}
-    - target: {fileID: 4045080135649128091, guid: 4b7f75e4c08eb084085dd19aca9db2c7, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.11621155
       objectReference: {fileID: 0}
     - target: {fileID: 4045080135649128091, guid: 4b7f75e4c08eb084085dd19aca9db2c7, type: 3}
       propertyPath: m_LocalPosition.x
