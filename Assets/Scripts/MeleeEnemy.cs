@@ -30,7 +30,7 @@ public class MeleeEnemy : MonoBehaviour
         startingPosition = transform.position;
         attack = false;
         state = player.GetComponent<PlayerController>().currentPlayerState;
-        health = 1f;
+        health = 2f;
         renderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
