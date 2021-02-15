@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour {
     public float health;
     [HideInInspector] public bool attacking;
 
+    public HealthBar healthBar;
+
     public void Awake()
     {
         currentPlayerState = new AwakeState();
@@ -27,15 +29,18 @@ public class PlayerController : MonoBehaviour {
     }
     private void Start() {
         health = 10;
+        healthBar.SetMaxHealth(health);
     }
 
     void Update () 
     {
         currentPlayerState.Update(this);
+        healthBar.SetHealth(health);
         if(health<=0)
         {
             SceneManager.LoadScene("MainMenu");
         }
+
     }
 
     public void ChangeState (PlayerState previousState, PlayerState newState) {
